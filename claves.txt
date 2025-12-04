@@ -1,0 +1,32 @@
+## Interpretacion de la tarea
+
+1. Entender el problema:
+    El objetivo es visitar todas las ciudades una vez y volver al inicio con el costo minimo
+2. Pista clave: hamilton
+    El algoritmo de hamilton es el algoritmo que nos permite encontrar el camino mas corto entre dos puntos, es decir es un camino en un grafo que visita todos los vértices exactamente una vez 
+    y regresa al vértice de partida
+3. Estructura de datos a utilizar:
+    Se pide representar como un problema de grafos donde las ciudades son nodos y las distancias enlaces, dado que sera una baja cantidad de 
+    ciudades, se puede representar como una matriz de adyacencias, ya que es mas facil verificar si hay conexion entre dos ciudades
+
+## Diseño modular
+Se piden funcione pequeñas con nombres descriptivos, para ello necesitaremos
+1. Definir la estructura grafo la cual necesita guardar 
+    -numero de ciudades (n)
+    -la matriz de distancias (int)
+    -bandera para saber si ya se inicializo (bool)
+2. Separar los archivos en .h y .c
+3. Definir las funciones, necesitaremos: 
+    - Grafos: inicializarGrafo, liberarGrafo (para evitar fugas de memoria)
+    - leerRuta para leer el archivos
+    - imprimirGrafo 
+    - Luego los algoritmos (utilizar recursividad)
+4. Interpretar comandos en el main
+5. Manejo de errores
+6. Modificacion de salida (visualmente)
+7. Documentacion
+8. Informe
+
+PUNTO CLAVE:
+- stdbool.h es una librería estándar del lenguaje C (introducida en el estándar C99) que permite trabajar con tipos de 
+datos booleanos (verdadero/falso) de manera nativa y legible.
