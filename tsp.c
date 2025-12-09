@@ -10,6 +10,13 @@ void backtracking(Grafo *g, int actual, int contador, int costoActual, int *minC
 int obtenerIndice(char c) { return c - 'A'; }
 char obtenerNombre(int i) { return i + 'A'; }
 
+void help() {
+    printf("%sComandos disponibles:%s\n", AMARILLO, RESET);
+    printf("%s  start <N>                      Inicia el grafo con N nodos.%s\n", AZUL, RESET);
+    printf("%s  read <archivo.txt>             Lee la ruta desde archivo.%s\n", AZUL, RESET);
+    printf("%s  graph                          Muestra la matriz de adyacencia.%s\n", AZUL, RESET);
+    printf("%s  exit                           Libera memoria y cierra el programa.%s\n", AZUL, RESET);
+}
 // Inicializa la estructura
 void inicializarGrafo(Grafo *g, int n) {
     if (g->inicializado) liberarGrafo(g);
@@ -24,7 +31,7 @@ void inicializarGrafo(Grafo *g, int n) {
         }
     }
     g->inicializado = true;
-    printf("Grafo creado con %d nodos\n", n);
+    printf("%sGrafo creado con %d nodos%s\n", VERDE, n, RESET);
 }
 
 // Libera memoria para evitar fugas (Requisito de memoria)
@@ -42,11 +49,11 @@ void liberarGrafo(Grafo *g) {
 void agregarRuta(Grafo *g, char *archivo) {
     FILE *fp = fopen(archivo, "r");
     if (!fp) {
-        printf("Error al abrir el archivo %s\n", archivo);
+        printf("%sError al abrir el archivo %s%s\n", ROJO, archivo, RESET);
         return;
     }
 
-    printf("Agregando enlaces desde archivo.\n");
+    printf("%sAgregando enlaces desde archivo.%s\n", AMARILLO, RESET);
     char origen, destino;
     int costo;
     while (fscanf(fp, " %c %c %d", &origen, &destino, &costo) == 3) {
@@ -63,12 +70,12 @@ void agregarRuta(Grafo *g, char *archivo) {
 
 // Muestra el grafo en formato de matriz de adyacencia
 void imprimirGrafo(Grafo *g) {
-    printf("\nRepresentación en Matriz de Adyacencia:\n");
+    printf("%s\nRepresentación en Matriz de Adyacencia:\n%s", AMARILLO, RESET);
     printf("   ");
     for(int i=0; i<g->numCiudades; i++) printf("%c  ", obtenerNombre(i));
     printf("\n");
     for (int i = 0; i < g->numCiudades; i++) {
-        printf("%c ", obtenerNombre(i));
+        printf(" %c ", obtenerNombre(i));
         for (int j = 0; j < g->numCiudades; j++) {
             printf("%2d ", g->matrizAdyacencia[i][j]);
         }
@@ -79,7 +86,7 @@ void imprimirGrafo(Grafo *g) {
 
 // Logica Principal (Ciclo Hamiltoniano)
 void resolverTSP(Grafo *g) {
-    printf("Verificando que existe una ruta.\n");
+    printf("%sVerificando que existe una ruta.%s\n", AMARILLO, RESET);
 
     // Asignación de memoria auxiliar para el algoritmo
     int *rutaActual = (int *)malloc(g->numCiudades * sizeof(int));
@@ -96,10 +103,10 @@ void resolverTSP(Grafo *g) {
     backtracking(g, 0, 1, 0, &minCosto, visitado, rutaActual, mejorRuta);
 
     if (minCosto == INF) {
-        printf("No existe un camino que recorra todos las ciudades y regrese a la ciudad de origen.\n");
+        printf("%sNo existe un camino que recorra todos las ciudades y regrese a la ciudad de origen.%s\n", AMARILLO, RESET);
     } else {
-        printf("Existe un camino que recorre todos las ciudades y regresa a la ciudad de origen.\n");
-        printf("Ruta a seguir: ");
+        printf("%sExiste un camino que recorre todos las ciudades y regresa a la ciudad de origen.%s\n", VERDE, RESET);
+        printf("%sRuta a seguir: %s", VERDE, RESET);
         // Imprimir la ruta encontrada
         for (int i = 0; i < g->numCiudades; i++) {
             printf("%c", obtenerNombre(mejorRuta[i]));
@@ -149,6 +156,5 @@ void backtracking(Grafo *g, int actual, int contador, int costoActual, int *minC
         }
     }
 }
-// Helpers
-int obtenerIndice(char c) { return c - 'A'; }
-char obtenerNombre(int i) { return i + 'A'; }
+
+
