@@ -149,3 +149,6 @@ void backtracking(Grafo *g, int actual, int contador, int costoActual, int *minC
         }
     }
 }
+// Helpers
+int obtenerIndice(char c) { return c - 'A'; }
+char obtenerNombre(int i) { return i + 'A'; }
