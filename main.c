@@ -1,9 +1,12 @@
+/**
+ * @file main.c
+ * @brief Programa principal para la interfaz de linea de comandos (CLI).
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "tsp.h"
-
-
 
 int main() {
     char comando[MAX_LINE];
@@ -12,7 +15,7 @@ int main() {
     grafo.matrizAdyacencia = NULL;
 
     printf("%sBienvenido al sistema PVV.%s\n", MORADO, RESET);
-    printf("%sSi necesita ayuda ingrese el comando help%s\n",AMARILLO, RESET);
+    printf("%sSi necesita ayuda ingrese el comando help%s\n", AMARILLO, RESET);
 
     while (1) {
         printf("%s>pvv %s", MORADO, RESET);
